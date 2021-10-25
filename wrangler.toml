@@ -1,0 +1,8 @@
+name = "red-api"
+type = "javascript"
+
+account_id = ""
+workers_dev = true
+route = ""
+zone_id = ""
+compatibility_date = "2021-10-22"
