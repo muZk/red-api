@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+itty-router@^2.4.4:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/itty-router/-/itty-router-2.4.4.tgz#2d686b9525188dbc6da0dd1780eed106f7a892e8"
+  integrity sha512-mp5i47ZotK94FHondKJTZn/0dBAFzFpZpiHWn+aCgr/sg9cIVzt1gvLCKsXMkcHgKejb9GdhqvOfh7VYJJlQoQ==
+
 prettier@^1.18.2:
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
