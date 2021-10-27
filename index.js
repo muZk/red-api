@@ -1,3 +1,7 @@
+import { Router } from 'itty-router'
+
+const router = Router()
+
 const ROUTES = {
   first: '1',
   second: '2',
@@ -140,6 +144,7 @@ async function getToken() {
   const text = await response.text()
   const regex = /\$jwt\s=\s'(.*)'/gm
   let token = null
+  let m = null
 
   while ((m = regex.exec(text)) !== null) {
     if (m.index === regex.lastIndex) {
@@ -168,23 +173,22 @@ async function getArrivalData(token, stopId) {
   return serialize(data)
 }
 
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
+router.get('/', () => {
+  return new Response('Ok')
 })
 
-/**
- * Respond with hello worker text
- * @param {Request} request
- */
-async function handleRequest(request) {
+router.get('/stops/:stopId/next_arrivals', async ({ params }) => {
   const token = await getToken()
-  const data = await getArrivalData(
-    token,
-    new URL(request.url).searchParams.get('stopId'),
-  )
+  const data = await getArrivalData(token, params.stopId)
   return new Response(JSON.stringify(data), {
     headers: {
       'content-type': 'application/json',
     },
   })
-}
+})
+
+router.all('*', () => new Response('404, not found!', { status: 404 }))
+
+addEventListener('fetch', e => {
+  e.respondWith(router.handle(e.request))
+})
