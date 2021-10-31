@@ -1,4 +1,5 @@
 import { Router } from 'itty-router'
+import { handleCors, wrapCorsHeader } from './cors-helpers'
 
 const router = Router()
 
@@ -177,14 +178,17 @@ router.get('/', () => {
   return new Response('Ok')
 })
 
+router.options('/stops/:stopId/next_arrivals', handleCors({ methods: 'POST', maxAge: 86400 }))
+
 router.get('/stops/:stopId/next_arrivals', async ({ params }) => {
   const token = await getToken()
   const data = await getArrivalData(token, params.stopId)
-  return new Response(JSON.stringify(data), {
+  const response = new Response(JSON.stringify(data), {
     headers: {
       'content-type': 'application/json',
     },
   })
+  return wrapCorsHeader(response)
 })
 
 router.all('*', () => new Response('404, not found!', { status: 404 }))
