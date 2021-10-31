@@ -178,7 +178,10 @@ router.get('/', () => {
   return new Response('Ok')
 })
 
-router.options('/stops/:stopId/next_arrivals', handleCors({ methods: 'POST', maxAge: 86400 }))
+router.options(
+  '/stops/:stopId/next_arrivals',
+  handleCors({ methods: 'POST', maxAge: 86400 }),
+)
 
 router.get('/stops/:stopId/next_arrivals', async ({ params }) => {
   const token = await getToken()

@@ -68,23 +68,24 @@ The webpage https://www.red.cl/planifica-tu-viaje/cuando-llega/ gets predictions
 If you check the source page, you'll notice that `t` param is a string present in a script tag. Example:
 
 ```js
-$jwt = 'ZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SmxlSEFpT2pFMk16VXhOekV6TWpBMU1UQjkuNlJRVkZ3RUgzNm1zMUJFdWw5Q2I3QlhlN21YRkR3eG1RN1hBVzl4SUx1VQ==';
-$codsimt = 'PA1';
-$codsimt = $codsimt.toUpperCase();
-var rutaTheme = 'https://www.red.cl/wp-content/themes/red';
-consultaParadero($jwt,$codsimt, desvios);
+$jwt =
+  'ZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SmxlSEFpT2pFMk16VXhOekV6TWpBMU1UQjkuNlJRVkZ3RUgzNm1zMUJFdWw5Q2I3QlhlN21YRkR3eG1RN1hBVzl4SUx1VQ=='
+$codsimt = 'PA1'
+$codsimt = $codsimt.toUpperCase()
+var rutaTheme = 'https://www.red.cl/wp-content/themes/red'
+consultaParadero($jwt, $codsimt, desvios)
 ```
 
 Although it is not used right away. `consultaParadero` decodes it at the beginning of the function:
 
 ```js
-$jwt_decoded = atob($jwt);
+$jwt_decoded = atob($jwt)
 ```
 
 All that said, the next_arrivals endpoint was implemented like this:
 
 - Step 1: Get the token from `https://www.red.cl/planifica-tu-viaje/cuando-llega` (run a regex over the HTML source).
-- Step 2: Get the data from `https://www.red.cl/predictor/prediccion` passing `t` and  `codsimt`.
+- Step 2: Get the data from `https://www.red.cl/predictor/prediccion` passing `t` and `codsimt`.
 - Step 3: Transform the data to make it similar to sclstrans's next_arrivals implementation ([docs](https://scltrans.it/#/readme)).
 
 ## Wrangler
