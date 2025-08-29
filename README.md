@@ -12,7 +12,14 @@ This project implements next_arrivals using a wrapper over red.cl service.
 
 ## How to use
 
-### `GET https://red-api.chewy.workers.dev/stops/:stopId/next_arrivals`
+> [!WARNING]  
+> **The public Cloudflare Worker endpoint (`https://red-api.chewy.workers.dev`) has been taken down.**  
+>  
+> Due to a high number of automated requests in recent days, the public instance of this API wrapper has been disabled to avoid exceeding usage limits on Cloudflare.  
+>  
+> If you'd like to continue using this project, you will need to deploy your own instance.
+
+### `GET /stops/:stopId/next_arrivals`
 
 Returns information on upcoming arrivals at the given bus stop. The response format mimics [scltrans's implementation](http://scltrans.it/#/api?id=estimaci%c3%b3n-de-pr%c3%b3ximos-arribos).
 
